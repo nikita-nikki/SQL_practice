@@ -17,6 +17,8 @@ amit kumar, arvind singh
 Query
 SELECT STRING_AGG(full_name, ', ') AS names
 FROM users;
+
+```
 Explanation
 STRING_AGG()
 
