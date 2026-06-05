@@ -20,17 +20,17 @@ BEGIN TRANSACTION
 SELECT * 
 FROM sales 
 WHERE amount > (
-SELECT SUM(amount) * 0.20
-FROM sales
+SELECT SUM(amount) * 0.20 
+FROM sales);
 
 DELETE FROM sales
 WHERE amount > (
 SELECT SUM(amount) * 0.20
-FROM sales
+FROM sales);
 
 SELECT * FROM sales;
  
 COMMIT;
  
 ROLLBACK;
-);
+;
