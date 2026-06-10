@@ -66,3 +66,43 @@ WHERE e1.salary >
 
 ---
 
+DROP TABLE IF EXISTS employees;
+
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    department VARCHAR(50),
+    salary INT
+);
+
+INSERT INTO employees VALUES
+(1, 'Amit', 'IT', 80000),
+(2, 'Sara', 'IT', 95000),
+(3, 'Ravi', 'IT', 70000),
+(4, 'Neha', 'HR', 60000),
+(5, 'Karan', 'HR', 75000),
+(6, 'Priya', 'HR', 55000),
+(7, 'John', 'Finance', 90000),
+(8, 'Emma', 'Finance', 85000);
+
+-- Employees whose salary is greater than the average salary of their department.
+SELECT 
+   *
+FROM employees e1
+WHERE salary > (
+   SELECT 
+       AVG(salary)
+   FROM employees e2
+   WHERE e2.department = e1.department 
+)
+
+-- Employees having the highest salary in their department
+SELECT 
+   * 
+FROM employees e1
+WHERE salary = (
+    SELECT 
+	  MAX(salary)
+	FROM employees e2
+	WHERE e2.department = e1.department
+)
